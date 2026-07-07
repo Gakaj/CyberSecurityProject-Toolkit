@@ -9,7 +9,7 @@ Simulating before the attack -> "grading" a password using entropy. Also, hashin
 Furthermore, a seperate attack.py module that simulates a dictionary attack enumerating passwords mirroring with less detail like tools like dirbuster(web directories/url) and [Hydra](https://www.kali.org/tools/hydra/)
 
  This project consists of files: 
- "Attack.py", "Entropy.py", "Hashing.py" and a txt file - common_passwords.txt 
+ "main.py", "Entropy.py", "Hashing.py" and a txt file - common_passwords.txt 
 
 Common_passwords.txt accredited from [SecLists](https://github.com/danielmiessler/SecLists/tree/master) - Compiled by DanielMiessler
 
