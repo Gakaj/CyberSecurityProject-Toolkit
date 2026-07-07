@@ -25,8 +25,6 @@ Common_passwords.txt accredited from [SecLists](https://github.com/danielmiessle
 Accreddited OWASP.org for info on [dictionary attacks](https://owasp.org/www-community/attacks/Brute_force_attack).
 Also accredit [account enumeration](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/04-Testing_for_Account_Enumeration_and_Guessable_User_Account)
 
-<details><summary>Entropy Equation</summary>![Alt text]("\\thurstoncollege.org\Data\StudentHome\20Entry\011368\Pictures\Screenshots\EntropyEquation.jpg")
-</details>
 <details><summary>Entropy Equation</summary>E = L x log<sub>2</sub>(R)</details>
 
 ## What it does so far:
