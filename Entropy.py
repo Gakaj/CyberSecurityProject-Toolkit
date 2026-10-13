@@ -101,7 +101,7 @@ def entropy_program(password):
                 print("CAN START TO INFER PASSWORD AS POSSIBLY STRONG")
                 print("HOWEVER CAN STILL BE WEAK AS MAY BE IN ANOTHER WORDLIST")
     time.sleep(1)
-    choice = input("Do you wish to see if password is in wordlist type(YES/NO)").strip().upper()
+    choice = input("Do you wish to see if password is in a wordlist? (Y|N)").strip().upper()
     if choice == "YES" or choice == "Y":
         AssessmentTextFile(password)
     else:
