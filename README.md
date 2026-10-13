@@ -9,7 +9,7 @@ Simulating before the attack -> "grading" a password using entropy. Also, hashin
 Furthermore, a seperate attack.py module that simulates a dictionary attack enumerating passwords mirroring with less detail like tools like dirbuster(web directories/url) and [Hydra](https://www.kali.org/tools/hydra/)
 
  This project consists of files: 
- "Attack.py", "Entropy.py", "Hashing.py" and a txt file - common_passwords.txt 
+ "main.py", "Entropy.py", "Hashing.py" and a txt file - common_passwords.txt 
 
 Common_passwords.txt accredited from [SecLists](https://github.com/danielmiessler/SecLists/tree/master) - Compiled by DanielMiessler
 
@@ -25,8 +25,11 @@ Common_passwords.txt accredited from [SecLists](https://github.com/danielmiessle
 Accreddited OWASP.org for info on [dictionary attacks](https://owasp.org/www-community/attacks/Brute_force_attack).
 Also accredit [account enumeration](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/04-Testing_for_Account_Enumeration_and_Guessable_User_Account)
 
-<details><summary>Entropy Equation</summary>![Alt text]("\\thurstoncollege.org\Data\StudentHome\20Entry\011368\Pictures\Screenshots\EntropyEquation.jpg")
-</details>
 <details><summary>Entropy Equation</summary>E = L x log<sub>2</sub>(R)</details>
+
+## What it does so far:
+
+1. Calculates Shannon entropy
+2. Implements secure hashing
 
 
