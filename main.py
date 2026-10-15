@@ -1,11 +1,8 @@
 #this version is before attempting to add salting. I understand passwords would likely be salted before hashing to improve security.
 #will think of way to solve this after completing attack simulation. 09.05.2026
-import time
-import Entropy
-import Hashing
+
 import argparse
 from Banner import display_banner, help
-import Attack
 import sys
 
 def main():
@@ -47,20 +44,47 @@ def main():
         help="Password to test stength on"
     )
 
+    # attack command
+    attack_parser = subparsers.add_parser(
+        "attack",
+        help = "Run attack simulation using dictionary"
+    )
+
+    attack_parser.add_argument(
+        "-d",
+        "--dictionary",
+        action="store_true",
+        help = "Select whether attack is dictionary based"
+    )
+
+    attack_parser.add_argument(
+        "-p", "--password", 
+        required=True, 
+        help="Target password for the simulation"
+    )
+
+    attack_parser.add_argument(
+         "-w", "--wordlist", 
+         required=True, 
+         help="Path to the wordlist file"
+     )
+
     
 
     args = parser.parse_args()
      
     if args.command == "hash":
+        import Hashing
         print(f"Hashing {args.wordlist}")
         Hashing.hashing(args.wordlist)
     
     elif args.command == "entropy":
+        import Entropy
         Entropy.entropy_program(args.password)
 
     elif args.command == "attack":
-        print("Booting ")
-        Attack.start()
+        import Attack
+        Attack.dictionary(args.password, args.wordlist)
 
 
 if __name__ == '__main__':
