@@ -25,7 +25,7 @@ OPTIONS
 EXAMPLES
   python main.py hash -w rockyou.txt
   python main.py entropy -p qwerty123
-  python main.py attack -dictionary -p qwerty123 -w rockyou.txt''')
+  python main.py attack -d -p qwerty123 -w rockyou.txt''')
     
 def display_banner():
     os.system('cls' if os.name == 'nt' else 'clear')

@@ -19,6 +19,9 @@ def hashing(wordlist):
   for line in read_hash_wordlist(wordlist): #print every hashed line
     print(line)
 
+def hash_word(target):
+  return hashlib.sha256(target.encode()).hexdigest()
+
 if __name__ == "__main__":
   hashing()
 else:

@@ -50,12 +50,12 @@ def main():
         help = "Run attack simulation using dictionary"
     )
 
-    attack_parser.add_argument(
-        "-d",
-        "--dictionary",
-        action="store_true",
-        help = "Select whether attack is dictionary based"
-    )
+    # attack_parser.add_argument(
+    #     "-d",
+    #     "--dictionary",
+    #     action="store_true",
+    #     help = "Select whether attack is dictionary based"
+    # )
 
     attack_parser.add_argument(
         "-p", "--password", 

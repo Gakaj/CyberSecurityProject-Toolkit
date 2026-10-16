@@ -15,3 +15,5 @@ import Hashing
 
 def dictionary(target, wordlist):
     
+    target_hash = Hashing.hash_word(target)
+    print(target_hash)
