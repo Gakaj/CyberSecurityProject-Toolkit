@@ -19,10 +19,9 @@ def read_wordlist(wordlist): # generator function to improve efficiency
     try:
         with open(wordlist, "r", encoding="utf-8", errors="ignore") as file:
             for line in file:
-                if line.strip() != "":
-                    yield line.strip()
-                else:
-                    file.seek(line+1)
+                line = line.strip()
+                if line:
+                    yield line
     except OSError:
         print("[FAILURE] Failed to find path")
             
@@ -53,17 +52,16 @@ def dictionary(target, wordlist):
     # main attack logic
     
     for candidate in read_wordlist(wordlist):
-        time.sleep(0.001)
         attempt += 1 
         
 
         if Hashing.hash_word(candidate) == target_hash:
             found = True
-            print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate} tested against target hash \x1b[K", end="", flush=True)
+            print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate:30} tested against target hash \x1b[K", end="", flush=True)
             print(f"\n[SUCCESS] {candidate} hash matched target")
             break
-            
-        print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate} tested against target hash \x1b[K", end="", flush=True)
+        if attempt % 1000 == 0:    
+            print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate[:30]} tested against target hash \x1b[K", end="", flush=True)
 
     end_time = time.perf_counter()
     if not found:
@@ -82,4 +80,7 @@ def dictionary(target, wordlist):
     print("Possibly just the hash of the target password would be supplied as the program is not attempting to enter a service")
 
 if __name__ == "__main__":
-    dictionary("hello", "C:/Users/samge/dev/ProjectsGit/Cybersecurity Project/text_files/common_passwords.txt")
+    try:
+        dictionary("hello", "C:/Users/samge/dev/ProjectsGit/Cybersecurity Project/text_files/common_passwords.txt")
+    except KeyboardInterrupt:
+        print("[SYSTEM] Program interrupted by user")
