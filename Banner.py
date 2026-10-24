@@ -55,8 +55,11 @@ taken inspiration from pentesting password cracking tools like THC Hydra.""")
     print(" > python main.py hash -h")
     print("---------------------------------------------------------------------")
 
-    
-
+def dictionary_banner():
+    print(r"""========================================
+       CYBERSECURITY TOOLKIT
+          DICTIONARY ATTACK
+========================================""")
 
 
     
