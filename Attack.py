@@ -16,12 +16,15 @@ import time
 from Banner import dictionary_banner
 
 def read_wordlist(wordlist): # generator function to improve efficiency
-    with open(wordlist, "r", encoding="utf-8", errors="ignore") as file:
-        for line in file:
-            if line.strip() != "":
-                yield line.strip()
-            else:
-                file.seek(line+1)
+    try:
+        with open(wordlist, "r", encoding="utf-8", errors="ignore") as file:
+            for line in file:
+                if line.strip() != "":
+                    yield line.strip()
+                else:
+                    file.seek(line+1)
+    except OSError:
+        print("[FAILURE] Failed to find path")
             
 
 
@@ -35,12 +38,14 @@ def dictionary(target, wordlist):
 
     target_hash = Hashing.hash_word(target) # call hash_word function and hash target password
     print(f"[INFO] Target password hash in SHA-256: {target_hash}")
-
-    with open(wordlist, "r", encoding="utf-8", errors="ignore") as file:
-        print(f"[INFO] Loaded Wordlist: {wordlist}")
-        word_count = sum(1 for line in file) # assumes one password per line, generator function to improve memory efficiency
-        print(f"[INFO] Words in wordlist: {word_count}\n\n\n")
-        
+    try:
+        with open(wordlist, "r", encoding="utf-8", errors="ignore") as file:
+            print(f"[INFO] Loaded Wordlist: {wordlist}")
+            
+            word_count = sum(1 for line in file) # assumes one password per line, generator function to improve memory efficiency
+            print(f"[INFO] Words in wordlist: {word_count}\n\n\n")
+    except OSError:
+        print("[FAILURE] Failed to find path")    
     attempt = 0
     found = False
     time.sleep(1)
@@ -48,10 +53,9 @@ def dictionary(target, wordlist):
     # main attack logic
     
     for candidate in read_wordlist(wordlist):
-    
+        time.sleep(0.001)
         attempt += 1 
         
-
 
         if Hashing.hash_word(candidate) == target_hash:
             found = True
@@ -66,7 +70,9 @@ def dictionary(target, wordlist):
         print("\n[FAILURE] Target not found in wordlist")
 
     #would you like to move to brute force on characters?
+    time.sleep(1)
     print("\n[RESULTS]\n")
+    time.sleep(1)
     print(f"Password revealed: {candidate}")
     print(f"Attempts: {attempt}")
     print(f"Time elapsed: {end_time - start_time:4f} seconds")
