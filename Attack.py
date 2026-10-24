@@ -12,8 +12,20 @@
 # 8. If the wordlist is exhausted, report not found.
 
 import Hashing
-import time
 from Banner import dictionary_banner, display_banner, brute_banner
+import time, string
+
+charsets = {
+    "digits": string.digits,                         # 0-9
+    "lowercase": string.ascii_lowercase,             # a-z
+    "uppercase": string.ascii_uppercase,             # A-Z
+    "letters": string.ascii_letters,                 # a-z, A-Z
+    "alphanumeric": string.ascii_letters + string.digits,  # a-z, A-Z, 0-9
+    "all": string.ascii_letters + string.digits + string.punctuation
+    }
+
+
+
 
 def read_wordlist(wordlist): # generator function to improve efficiency
     try:
@@ -83,9 +95,31 @@ def dictionary(target, wordlist):
     print("Possibly just the hash of the target password would be supplied as the program is not attempting to enter a service")
 
 
+def generate_candidates(charset, maxlength):
+    import itertools
+    for length in range(1, maxlength + 1):
+        for combination in itertools.product(charset, repeat=length):
+            yield "".join(combination)
 
-def brute_force(target):
+def calculate_attempts(charset, maxlength):
+    charset = charsets[charset] 
+    # logic for calculating attempts of brute force 
+    pass 
+
+def brute_force(target, charset, maxlength):
     brute_banner()
+    time.sleep(1)
+
+    charset = charsets[charset]
+
+    print(f"[INFO] Charset identified: {charset}")
+    print(f"[INFO] Maxlength: {maxlength}")
+    print("[INFO] Initialising brute force attack\n")
+    time.sleep(1)
+
+    for line in generate_candidates(charset, maxlength):
+        print(f"\r{line}", end="", flush=True)
+
     pass
 
 

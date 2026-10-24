@@ -73,9 +73,22 @@ def main():
 
     attack_parser.add_argument(
          "-w", "--wordlist", 
-         required=True, 
          help="Path to the wordlist file"
      )
+
+    attack_parser.add_argument(
+        "-m", "--max-length",
+        help="Max length of charset",
+        type=int,
+        default=4
+    )
+
+    attack_parser.add_argument(
+        "-c", "--charset",
+        choices=["digits", "lowercase", "uppercase", "letters", "alphanumeric", "all"],
+        default="lowercase",
+        help="Character set for brute force"
+    )
 
     
 
@@ -93,9 +106,13 @@ def main():
     elif args.command == "attack":
         import Attack
         if args.dictionary:
+            if not args.wordlist:
+                attack_parser.error("Dictionary attacks require wordlist {-w/--wordlist}")
+            
             Attack.dictionary(args.password, args.wordlist)
+
         elif args.brute_force:
-            Attack.brute_force(args.password)
+            Attack.brute_force(args.password, args.charset, args.max_length)
 
 
 if __name__ == '__main__':
