@@ -62,5 +62,8 @@ def dictionary_banner():
           DICTIONARY ATTACK
 ========================================""")
 
-
-    
+def brute_banner():
+    print("""\n========================================
+       CYBERSECURITY TOOLKIT
+          BRUTEFORCE ATTACK
+========================================""")

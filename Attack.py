@@ -13,7 +13,7 @@
 
 import Hashing
 import time
-from Banner import dictionary_banner, display_banner
+from Banner import dictionary_banner, display_banner, brute_banner
 
 def read_wordlist(wordlist): # generator function to improve efficiency
     try:
@@ -81,6 +81,14 @@ def dictionary(target, wordlist):
     print("\nNote the plaintext password target would not be available to be printed in actual scenario")
     print("\nThis is an educational simulation of a dictionary attack and the program would obviously not be given the plain text password.")
     print("Possibly just the hash of the target password would be supplied as the program is not attempting to enter a service")
+
+
+
+def brute_force(target):
+    brute_banner()
+    pass
+
+
 
 if __name__ == "__main__":
     try:

@@ -51,12 +51,19 @@ def main():
         help = "Run attack simulation using dictionary"
     )
 
-    # attack_parser.add_argument(
-    #     "-d",
-    #     "--dictionary",
-    #     action="store_true",
-    #     help = "Select whether attack is dictionary based"
-    # )
+    attack_type = attack_parser.add_mutually_exclusive_group(required=True)
+
+    attack_type.add_argument(
+    "-d", "--dictionary",
+    action="store_true",
+    help="Run a dictionary attack"
+    )
+
+    attack_type.add_argument(
+        "-b", "--brute-force",
+        action="store_true",
+        help="Run a brute-force attack"
+    )
 
     attack_parser.add_argument(
         "-p", "--password", 
@@ -85,7 +92,10 @@ def main():
 
     elif args.command == "attack":
         import Attack
-        Attack.dictionary(args.password, args.wordlist)
+        if args.dictionary:
+            Attack.dictionary(args.password, args.wordlist)
+        elif args.brute_force:
+            Attack.brute_force(args.password)
 
 
 if __name__ == '__main__':
