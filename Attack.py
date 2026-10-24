@@ -13,7 +13,7 @@
 
 import Hashing
 import time
-from Banner import dictionary_banner
+from Banner import dictionary_banner, display_banner
 
 def read_wordlist(wordlist): # generator function to improve efficiency
     try:
@@ -29,8 +29,9 @@ def read_wordlist(wordlist): # generator function to improve efficiency
 
 def dictionary(target, wordlist):
     
-
+    display_banner()
     dictionary_banner() # print banner of dictionary attack
+
     time.sleep(1)
     print("[INFO] Initialising dictionary attack")
     time.sleep(0.1)
@@ -47,6 +48,7 @@ def dictionary(target, wordlist):
         print("[FAILURE] Failed to find path")    
     attempt = 0
     found = False
+    update_interval = max(1, word_count // 1000) # takes the max of the two statements - if count less than 1000, 0 would produce error.
     time.sleep(1)
     start_time = time.perf_counter() # start timer to see how long program elapses
     # main attack logic
@@ -57,26 +59,27 @@ def dictionary(target, wordlist):
 
         if Hashing.hash_word(candidate) == target_hash:
             found = True
-            print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate:30} tested against target hash \x1b[K", end="", flush=True)
+            print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate[:30]} tested against target hash \x1b[K", end="", flush=True)
             print(f"\n[SUCCESS] {candidate} hash matched target")
+            time.sleep(1)
+            print("\n[RESULTS]\n")
+            time.sleep(1)
+            print(f"Password revealed: {candidate}")
+            print(f"Attempts: {attempt}")
             break
-        if attempt % 1000 == 0:    
+        if attempt % update_interval == 0:    
             print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate[:30]} tested against target hash \x1b[K", end="", flush=True)
 
     end_time = time.perf_counter()
     if not found:
         print("\n[FAILURE] Target not found in wordlist")
 
-    #would you like to move to brute force on characters?
-    time.sleep(1)
-    print("\n[RESULTS]\n")
-    time.sleep(1)
-    print(f"Password revealed: {candidate}")
-    print(f"Attempts: {attempt}")
     print(f"Time elapsed: {end_time - start_time:4f} seconds")
+    print(f"Attempts per second: {attempt / (end_time-start_time):4f}")
+
 
     print("\nNote the plaintext password target would not be available to be printed in actual scenario")
-    print("\nThis is a educational simulation of a dictionary attack and the program would obviously not be given the plain text password.")
+    print("\nThis is an educational simulation of a dictionary attack and the program would obviously not be given the plain text password.")
     print("Possibly just the hash of the target password would be supplied as the program is not attempting to enter a service")
 
 if __name__ == "__main__":

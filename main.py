@@ -2,12 +2,13 @@
 #will think of way to solve this after completing attack simulation. 09.05.2026
 
 import argparse
-from Banner import display_banner, help
+from Banner import display_banner, help, follow_menu_help
 import sys
 
 def main():
     if len(sys.argv) == 1:
         display_banner()
+        follow_menu_help()
         return
 
     if sys.argv[1] == "help":

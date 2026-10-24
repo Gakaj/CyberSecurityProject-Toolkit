@@ -43,20 +43,21 @@ taken inspiration from pentesting password cracking tools like THC Hydra.""")
     time.sleep(1.5)
     print("\nPassword security toolkit created by an A Level student")
     print("Version 1.0.0")
-    time.sleep(1)
-    print("---------------------------------------------------------------------")
-    print("Run script again and type 'help' to view help menu")
-    print(" > python main.py help")
-    time.sleep(1)
-    print("\nRun scripts again and type '-h' to view commands and usage")
-    print(" > python main.py -h")
-    time.sleep(1)
-    print("\nType 'help' after command argument to see help on that feature")
-    print(" > python main.py hash -h")
-    print("---------------------------------------------------------------------")
+def follow_menu_help():
+  time.sleep(1)
+  print("---------------------------------------------------------------------")
+  print("Run script again and type 'help' to view help menu")
+  print(" > python main.py help")
+  time.sleep(1)
+  print("\nRun scripts again and type '-h' to view commands and usage")
+  print(" > python main.py -h")
+  time.sleep(1)
+  print("\nType 'help' after command argument to see help on that feature")
+  print(" > python main.py hash -h")
+  print("---------------------------------------------------------------------")
 
 def dictionary_banner():
-    print(r"""========================================
+    print("""\n========================================
        CYBERSECURITY TOOLKIT
           DICTIONARY ATTACK
 ========================================""")
