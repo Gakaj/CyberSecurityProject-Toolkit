@@ -1,35 +1,26 @@
 # CyberSecurityProject---AttackSim
 <!-- no official site warning -->
-> [!CAUTION]
-> WORK IN PROGRESS
+## Password Cracking Toolkit
+A Python-based cybersecurity toolkit that implements dictionary and brute-force password cracking techniques to test against target hashes. The toolkit measures execution time, attempts and cracking speed to demonstrate how password length, character-set complexity and attack methodology affect password security.
 
-This project emulates what an attack would look like. 
-Simulating before the attack -> "grading" a password using entropy. Also, hashing algorithm performed on password -> simulate an attack on a hash comparing the hash value to the hashe enumerated password attempts rather than the raw password.
+## Shannon Entropy Calculator Module
+Implements Shannon entropy to analyse the distribution of characters within a password and estimate its information content. 
+Put simply, it quantifies, using an equation, the complexity of a password, demonstrating whether it is able to be a intractable problem(computationally practical) to a brute force scenario. 
+However, it is not automatically an accurate password 'grader'. For example, a password containing repeated characters can have a lower entropy than a random password of the same length. Password predictability and common patterns also matter, like 123 or capitalised first letters also matter significantly - especially in a hybrid attack methodology.
 
-Furthermore, a seperate attack.py module that simulates a dictionary attack enumerating passwords mirroring with less detail like tools like dirbuster(web directories/url) and [Hydra](https://www.kali.org/tools/hydra/)
+<details>
+<summary>View Shannon Entropy Formula</summary>
 
- This project consists of files: 
- "main.py", "Entropy.py", "Hashing.py" and a txt file - common_passwords.txt 
+Shannon entropy is calculated using:
 
-Common_passwords.txt accredited from [SecLists](https://github.com/danielmiessler/SecLists/tree/master) - Compiled by DanielMiessler
+$$
+H(X)=-\sum_{i=1}^{n}p(x_i)\log_2 p(x_i)
+$$
 
+Where:
+- $H(X)$ is the Shannon entropy.
+- $p(x_i)$ is the probability of character $x_i$ occurring.
+- $n$ is the number of distinct characters.
+- $\log_2$ is the logarithm to base 2.
 
-<ins>Summary:
-
-| entropy.py | hashing.py | attack.py | main.py   |
-|------------|------------|-----------|-----------|
-| Uses entropy formula | Uses SHA-256 cryptography | Uses different methods | Glues all files    |
-| Collapse entropy formula| [More info](https://www.geeksforgeeks.org/ethical-hacking/passwords-entropy-cracking/)| View [BFAR.txt](https://github.com/Gakaj/CyberSecurityProject---AttackSim/blob/main/Cybersecurity%20Project/research/BruteForceAttackResearch.txt)  | ***Final Program***|
-| Entropy Formula| [More info](https://www.geeksforgeeks.org/ethical-hacking/passwords-entropy-cracking/)| View [BFAR.txt](https://github.com/Gakaj/CyberSecurityProject---AttackSim/blob/main/Cybersecurity%20Project/research/BruteForceAttackResearch.txt)  | ***Final Program***|
-
-Accreddited OWASP.org for info on [dictionary attacks](https://owasp.org/www-community/attacks/Brute_force_attack).
-Also accredit [account enumeration](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/04-Testing_for_Account_Enumeration_and_Guessable_User_Account)
-
-<details><summary>Entropy Equation</summary>E = L x log<sub>2</sub>(R)</details>
-
-## What it does so far:
-
-1. Calculates Shannon entropy
-2. Implements secure hashing
-
-
+</details>
