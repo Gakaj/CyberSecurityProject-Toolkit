@@ -8,19 +8,8 @@ Implements Shannon entropy to analyse the distribution of characters within a pa
 Put simply, it quantifies, using an equation, the complexity of a password, demonstrating whether it is able to be a intractable problem(computationally practical) to a brute force scenario. 
 However, it is not automatically an accurate password 'grader'. For example, a password containing repeated characters can have a lower entropy than a random password of the same length. Password predictability and common patterns also matter, like 123 or capitalised first letters also matter significantly - especially in a hybrid attack methodology.
 
-<details>
-<summary>View Shannon Entropy Formula</summary>
+# Project Overview
+The Cybersecurity Toolkit is an educational Python application designed to explore password security, cryptographic hashing and password cracking techniques through practical simulations. It provides a genuine use of offline cracking of (currently exclusively) SHA-256 hashes through methods of dictionary or brute force strategies.
 
-Shannon entropy is calculated using:
-
-$$
-H(X)=-\sum_{i=1}^{n}p(x_i)\log_2 p(x_i)
-$$
-
-Where:
-- $H(X)$ is the Shannon entropy.
-- $p(x_i)$ is the probability of character $x_i$ occurring.
-- $n$ is the number of distinct characters.
-- $\log_2$ is the logarithm to base 2.
-
-</details>
+## Key Features
+- Password Hashing: Generate SHA-256 hashes of a wordlist or individual words. Utilised in cracking modules to compare target hash against candidate hash.
