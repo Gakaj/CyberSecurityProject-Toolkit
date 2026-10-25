@@ -26,10 +26,14 @@ def main():
     )
 
     hash_parser.add_argument(
-        "-w",
-        "--wordlist",
-        required=True,
+        "-w", "--wordlist",
         help="Path to wordlist"
+    )
+
+    hash_parser.add_argument(
+        "-p", "--password",
+        help = "String to hash using SHA-256"
+
     )
 
     # entropy conmmand
@@ -39,8 +43,7 @@ def main():
     )
 
     entropy_parser.add_argument(
-        "-p",
-        "--password",
+        "-p", "--password",
         required=True,
         help="Password to test stength on"
     )
@@ -51,8 +54,21 @@ def main():
         help = "Run attack simulation using dictionary"
     )
 
-    attack_type = attack_parser.add_mutually_exclusive_group(required=True)
 
+    target_group = attack_parser.add_mutually_exclusive_group(required=True)
+
+    target_group.add_argument(
+        "--hash",
+        dest="target_hash",
+        help= "Target password hash for offline hash cracking"        
+    )
+
+    target_group.add_argument( "-p", "--password", 
+        help="Plaintext password for testing" 
+    )
+
+    attack_type = attack_parser.add_mutually_exclusive_group(required=True)
+    
     attack_type.add_argument(
     "-d", "--dictionary",
     action="store_true",
@@ -65,23 +81,12 @@ def main():
         help="Run a brute-force attack"
     )
 
-    attack_parser.add_argument(
-        "-p", "--password", 
-        required=True, 
-        help="Target password for the simulation"
-    )
-
-    attack_parser.add_argument(
-         "-w", "--wordlist", 
-         help="Path to the wordlist file"
-     )
-
-    attack_parser.add_argument(
-        "-m", "--max-length",
-        help="Max length of charset",
-        type=int,
-        default=4
-    )
+# Optional arguments attack_parser.add_argument( "-w", "--wordlist", help="Path to the wordlist file" ) 
+    attack_parser.add_argument( "-m", "--max-length", 
+        type=int, 
+        default=4, 
+        help="Maximum length of candidate passwords" 
+        )
 
     attack_parser.add_argument(
         "-c", "--charset",
@@ -90,14 +95,22 @@ def main():
         help="Character set for brute force"
     )
 
+    attack_parser.add_argument(
+        "-w", "--wordlist",
+        help ="Path to wordlist"
+    )
+
     
 
     args = parser.parse_args()
      
     if args.command == "hash":
         import Hashing
-        print(f"Hashing {args.wordlist}")
-        Hashing.hashing(args.wordlist)
+        if args.wordlist:
+            print(f"Hashing {args.wordlist}")
+            Hashing.hashing(args.wordlist)
+        elif args.password:
+            print(f"This is the SHA-256 hash of the word {args.password}: \n{Hashing.hash_word(args.password)}")
     
     elif args.command == "entropy":
         import Entropy
@@ -105,14 +118,22 @@ def main():
 
     elif args.command == "attack":
         import Attack
+        import Hashing
+
+        if args.target_hash:
+            target_hash = args.target_hash
+        else:
+            target_hash = Hashing.hash_word(args.password)
+
         if args.dictionary:
             if not args.wordlist:
                 attack_parser.error("Dictionary attacks require wordlist {-w/--wordlist}")
+                return
             
-            Attack.dictionary(args.password, args.wordlist)
+            Attack.dictionary(target_hash, args.wordlist)
 
         elif args.brute_force:
-            Attack.brute_force(args.password, args.charset, args.max_length)
+            Attack.brute_force(target_hash, args.charset, args.max_length)
 
 
 if __name__ == '__main__':

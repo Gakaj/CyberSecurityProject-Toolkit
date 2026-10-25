@@ -28,7 +28,6 @@ EXAMPLES
   python main.py attack -d -p qwerty123 -w rockyou.txt''')
     
 def display_banner():
-    os.system('cls' if os.name == 'nt' else 'clear')
     print(r"""
 _________       ______                  ________           ___________ __________ 
 __  ____/____  ____  /______________    ___  __/______________  /__  /____(_)_  /_

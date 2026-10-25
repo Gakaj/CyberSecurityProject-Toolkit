@@ -48,8 +48,7 @@ def dictionary(target, wordlist):
     print("[INFO] Initialising dictionary attack")
     time.sleep(0.1)
 
-    target_hash = Hashing.hash_word(target) # call hash_word function and hash target password
-    print(f"[INFO] Target password hash in SHA-256: {target_hash}")
+    print(f"[INFO] Target password hash in SHA-256: {target}")
     try:
         with open(wordlist, "r", encoding="utf-8", errors="ignore") as file:
             print(f"[INFO] Loaded Wordlist: {wordlist}")
@@ -69,7 +68,7 @@ def dictionary(target, wordlist):
         
         attempt += 1 
 
-        if Hashing.hash_word(candidate) == target_hash:
+        if Hashing.hash_word(candidate) == target:
             found = True
             end_time = time.perf_counter()
             print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate[:30]} tested against target hash \x1b[K", end="", flush=True)
@@ -118,7 +117,6 @@ def brute_force(target, charset, maxlength):
 
 
     total_attempts = calculate_attempts(charset, maxlength)
-    target_hash = Hashing.hash_word(target) # call hash_word function and hash target password
 
     print(f"[INFO] Total attempts: {total_attempts}")
     
@@ -134,7 +132,7 @@ def brute_force(target, charset, maxlength):
         
         attempt += 1
 
-        if Hashing.hash_word(candidate) == target_hash:
+        if Hashing.hash_word(candidate) == target:
             end_time = time.perf_counter()
             found = True
             print(f"\r[ATTEMPT {attempt} / {total_attempts}] : {candidate} tested against target hash \x1b[K", end="", flush=True)
