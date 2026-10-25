@@ -102,23 +102,48 @@ def generate_candidates(charset, maxlength):
             yield "".join(combination)
 
 def calculate_attempts(charset, maxlength):
-    charset = charsets[charset] 
-    # logic for calculating attempts of brute force 
-    pass 
+    n = len(charset)
+    return sum(n ** length for length in range(1, maxlength + 1)) 
 
 def brute_force(target, charset, maxlength):
     brute_banner()
     time.sleep(1)
-
-    charset = charsets[charset]
-
     print(f"[INFO] Charset identified: {charset}")
+    
+    charset = charsets[charset]
+    print("\n[INFO] Initialising brute force attack\n")
     print(f"[INFO] Maxlength: {maxlength}")
-    print("[INFO] Initialising brute force attack\n")
+
+    total_attempts = calculate_attempts(charset, maxlength)
+    target_hash = Hashing.hash_word(target) # call hash_word function and hash target password
+
+    print(f"[INFO] Total attempts: {total_attempts}")
+    
+    time.sleep(1)
+    attempt = 0
+    found = False
+    update_interval = max(1, total_attempts // 1000) # takes the max of the two statements - if count less than 1000, 0 would produce error.
     time.sleep(1)
 
-    for line in generate_candidates(charset, maxlength):
-        print(f"\r{line}", end="", flush=True)
+    for candidate in generate_candidates(charset, maxlength):
+        attempt += 1
+        if Hashing.hash_word(candidate) == target_hash:
+            found = True
+            print(f"\r[ATTEMPT {attempt} / {total_attempts}] : {candidate} tested against target hash \x1b[K", end="", flush=True)
+            print(f"\n[SUCCESS] {candidate} hash matched target")
+
+            time.sleep(1)
+            print("\n[RESULTS]\n")
+            time.sleep(1)
+            print(f"Password revealed: {candidate}")
+            print(f"Attempts: {attempt}")
+            break
+
+        if attempt % update_interval == 0:    
+            print(f"\r[ATTEMPT {attempt} / {total_attempts}] : {candidate} tested against target hash \x1b[K", end="", flush=True)
+
+
+
 
     pass
 
