@@ -63,14 +63,15 @@ def dictionary(target, wordlist):
     update_interval = max(1, word_count // 1000) # takes the max of the two statements - if count less than 1000, 0 would produce error.
     time.sleep(1)
     start_time = time.perf_counter() # start timer to see how long program elapses
-    # main attack logic
     
-    for candidate in read_wordlist(wordlist):
-        attempt += 1 
+    
+    for candidate in read_wordlist(wordlist): # main attack logic
         
+        attempt += 1 
 
         if Hashing.hash_word(candidate) == target_hash:
             found = True
+            end_time = time.perf_counter()
             print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate[:30]} tested against target hash \x1b[K", end="", flush=True)
             print(f"\n[SUCCESS] {candidate} hash matched target")
             time.sleep(1)
@@ -82,10 +83,10 @@ def dictionary(target, wordlist):
         if attempt % update_interval == 0:    
             print(f"\r[ATTEMPT {attempt} / {word_count}] : {candidate[:30]} tested against target hash \x1b[K", end="", flush=True)
 
-    end_time = time.perf_counter()
+    
     if not found:
         print("\n[FAILURE] Target not found in wordlist")
-
+        end_time = time.perf_counter()
     print(f"Time elapsed: {end_time - start_time:4f} seconds")
     print(f"Attempts per second: {attempt / (end_time-start_time):4f}")
 
@@ -106,13 +107,15 @@ def calculate_attempts(charset, maxlength):
     return sum(n ** length for length in range(1, maxlength + 1)) 
 
 def brute_force(target, charset, maxlength):
+    
+    display_banner()
     brute_banner()
     time.sleep(1)
-    print(f"[INFO] Charset identified: {charset}")
-    
-    charset = charsets[charset]
-    print("\n[INFO] Initialising brute force attack\n")
+    print(f"\n[INFO] Charset identified: {charset}")
     print(f"[INFO] Maxlength: {maxlength}")
+
+    charset = charsets[charset]
+
 
     total_attempts = calculate_attempts(charset, maxlength)
     target_hash = Hashing.hash_word(target) # call hash_word function and hash target password
@@ -124,10 +127,15 @@ def brute_force(target, charset, maxlength):
     found = False
     update_interval = max(1, total_attempts // 1000) # takes the max of the two statements - if count less than 1000, 0 would produce error.
     time.sleep(1)
+    start_time = time.perf_counter()
+    print("\n[INFO] Initialising brute force attack\n")
 
-    for candidate in generate_candidates(charset, maxlength):
+    for candidate in generate_candidates(charset, maxlength): # main attack logic
+        
         attempt += 1
+
         if Hashing.hash_word(candidate) == target_hash:
+            end_time = time.perf_counter()
             found = True
             print(f"\r[ATTEMPT {attempt} / {total_attempts}] : {candidate} tested against target hash \x1b[K", end="", flush=True)
             print(f"\n[SUCCESS] {candidate} hash matched target")
@@ -141,7 +149,18 @@ def brute_force(target, charset, maxlength):
 
         if attempt % update_interval == 0:    
             print(f"\r[ATTEMPT {attempt} / {total_attempts}] : {candidate} tested against target hash \x1b[K", end="", flush=True)
+        
+       
+    if not found:
+        end_time = time.perf_counter()
+        print("\n[FAILURE] Target not discovered")
+        print("[FAILURE] Target may be more characters")
 
+    print(f"Time elapsed: {end_time - start_time:4f} seconds")
+    print(f"Attempts per second: {attempt / (end_time-start_time):4f}")
+    print("\nNote the plaintext password target would likely not be provided, rather the hash to recover the original password")
+    print("\nThis is an educational simulation of a brute force attack and the program would obviously not be given the plain text password.")
+    print("Possibly just the hash of the target password would be supplied as the program is not attempting to enter a service")
 
 
 
