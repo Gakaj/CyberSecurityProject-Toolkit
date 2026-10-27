@@ -74,7 +74,7 @@ python main.py entropy -p {PASSWORD}
 It will then follow up with questioning whether you would like to search a wordlist for that password you have entered using.
 <br><br>
 # Hashing Module
-Implemented with (currently exclusively) SHA-256. Used in the attacking module as well. It is optimised using a generator to only yield one hash at a time rather than loading the whole hashed wordlist 
+Implemented with (currently exclusively) SHA-256. Used in the attacking module as well. It is optimised using a generator to only yield one hash at a time rather than loading the whole hashed wordlist. 
 ### Usage:
 You can either hash an entire wordlist and output to the terminal:
 ```
