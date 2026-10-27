@@ -2,8 +2,25 @@
 
 A Python-based cybersecurity toolkit that implements dictionary and brute-force password cracking techniques to test against target hashes. The toolkit measures execution time, attempts and cracking speed to demonstrate how password length, character-set complexity and attack methodology affect password security.
 
-The Cybersecurity Toolkit is an educational Python application designed to explore password security, cryptographic hashing and password cracking techniques through practical simulations. It provides a genuine use of offline cracking of (currently exclusively) SHA-256 hashes through methods of dictionary or brute force strategies.
+The Cybersecurity Toolkit is an educational Python application designed to explore password security, cryptographic hashing and password cracking techniques through practical simulations. It provides a genuine use of offline cracking/password recovery of (currently exclusively) SHA-256 hashes through methods of dictionary or brute force strategies.
 # How to install
+<br>bash
+```
+git clone https://github.com/Gakaj/CyberSecurityProject-Toolkit.git
+```
+Navigate to the directory 
+```
+cd ..../CyberSecurityProject-Toolkit.git
+```
+### Base usage
+Once in directory simply run:
+```
+python main.py
+```
+This will show base usage and program info. <br> For a more in depth help menu:
+```
+python main.py help
+```
 
 ## Key Features
 - Command line interfacce: Implemented command line functionality and commands using Python's **argparse**.
@@ -56,9 +73,9 @@ However, it is not automatically an accurate password 'grader'. For example, a p
 python main.py entropy -p {PASSWORD}
 ``` 
 It will then follow up with questioning whether you would like to search a wordlist for that password you have entered using.
-<br><br><br>
+<br><br>
 # Hashing Module
-Implemented with (currently just) SHA-256. Used in the attacking module as well. It is optimised using a generator to only yield one hash at a time rather than loading the whole hashed wordlist 
+Implemented with (currently exclusively) SHA-256. Used in the attacking module as well. It is optimised using a generator to only yield one hash at a time rather than loading the whole hashed wordlist 
 ## Usage:
 You can either hash an entire wordlist and output to the terminal:
 ```
@@ -68,7 +85,14 @@ Or hash just one word:
 ```
 python main.py hash -p (WORDLIST PATH}
 ```
-
+# Possible Future Improvements 
+- Implementing other hash methods like MD5
+- Implementing functionality to crack salted hashes like HashCat and other password recovery tools
+- Implementing other cracking/attacks methodologies like mask attacks or hybrid attacks
+# IMPORTANT NOTE
+This is an educational program used to explore the relationship between theoretical complexity of a password and the computational resources needed to crack it.
+It should **not** be used to crack SHA-256 hashes without permission outside of a safe environment. 
+Happy coding!
 
 
 
