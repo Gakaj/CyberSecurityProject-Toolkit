@@ -31,6 +31,7 @@ python main.py help
 - Performance Measurement: Track the number of attempts and elapsed execution time to evaluate the efficiency of different attack methods.
 # Attack module
 This is the main function of the project. It allows you to perform offline SHA-256 hash cracking, but also to simulate password cracking in which it will time how long it would take to crack, attempts to reveal hash and also attempts per second. It provides dictionary and brute force functionality. 
+
 ## Dictionary Methodology
 Decided with the -d tag following the attack command, then provide the arguments for the target hash or the password, then provide the wordlist to test against. <br> The program will call the hash module to convert a candidate password into a SHA-256 hash. Depending on the arguments: if you provided a plaintext password - first hash before comparing, if given a hash, do not hash again. Compare candidate hash to target hash. If do not match, increment attempts and move to next candidate.
 ### Usage:
@@ -50,7 +51,7 @@ You can choose a multitude of options for the charset:<br>
  | lowercase a-z | uppercase A-Z | letters a-z, A-Z | digits 0-9 | alphanumerical a-z, A-Z, 0-9 | all a-z, A-Z, 0-9, punctuation
 
  
- ###### Usage:
+ ### Usage:
  ```
 python main.py attack -b --hash {SHA-256 hash} -c {CHARSET} -m {MAXLENGTH INT}
 ```
@@ -68,7 +69,7 @@ python main.py attack -b -p world -c alphanumerical -m 5
 Implements Shannon entropy to analyse the distribution of characters within a password and estimate its information content. 
 Put simply, it quantifies, using an equation, the complexity of a password, demonstrating whether it is able to be a intractable problem(computationally practical) to a brute force scenario. 
 However, it is not automatically an accurate password 'grader'. For example, a password containing repeated characters can have a lower entropy than a random password of the same length. Password predictability and common patterns also matter, like 123 or capitalised first letters also matter significantly - especially in a hybrid attack methodology.
-## Usage:
+### Usage:
 ```
 python main.py entropy -p {PASSWORD}
 ``` 
@@ -76,7 +77,7 @@ It will then follow up with questioning whether you would like to search a wordl
 <br><br>
 # Hashing Module
 Implemented with (currently exclusively) SHA-256. Used in the attacking module as well. It is optimised using a generator to only yield one hash at a time rather than loading the whole hashed wordlist 
-## Usage:
+### Usage:
 You can either hash an entire wordlist and output to the terminal:
 ```
 python main.py hash -w {WORDLIST PATH}
@@ -91,8 +92,8 @@ python main.py hash -p (WORDLIST PATH}
 - Implementing other cracking/attacks methodologies like mask attacks or hybrid attacks
 # IMPORTANT NOTE
 This is an educational program used to explore the relationship between theoretical complexity of a password and the computational resources needed to crack it.
-It should **not** be used to crack SHA-256 hashes without permission outside of a safe environment. 
-Happy coding!
+<br>It should <ins>**not**</ins> be used to crack SHA-256 hashes or in any illegitimate way without permission outside of a safe environment out of harm. 
+<br>Happy coding!
 
 
 
