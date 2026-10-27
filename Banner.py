@@ -20,6 +20,9 @@ OPTIONS
   -h, --help		Display help of command 
   -w, --wordlist	Specify the path of a wordlist file
   -p, --password	Specify a password to analyse 
+  -c, --charset         Specify the charset to use when generating candidate combinations {letters, lowercase, uppercase, digits, etc.}  
+  -m, --maxlength       Specify the maxlength of the candidate combinations
+  --hash                Provide the SHA-256 hash for cracking
 
 
 EXAMPLES
