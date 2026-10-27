@@ -4,7 +4,7 @@ A Python-based cybersecurity toolkit that implements dictionary and brute-force 
 
 The Cybersecurity Toolkit is an educational Python application designed to explore password security, cryptographic hashing and password cracking techniques through practical simulations. It provides a genuine use of offline cracking/password recovery of (currently exclusively) SHA-256 hashes through methods of dictionary or brute force strategies.
 # How to install
-Once in identified parent directory, for example the downloads directory run:
+Once in identified parent directory, for example the downloads directory, run:<br><br>
 bash
 ```
 git clone https://github.com/Gakaj/CyberSecurityProject-Toolkit.git
