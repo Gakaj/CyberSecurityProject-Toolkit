@@ -40,8 +40,8 @@ _  /    __  / / /_  __ \  _ \_  ___/    __  /  _  __ \  __ \_  /__  //_/_  /_  _
         /____/                                                                    """)
     time.sleep(0.5)
     print("\n\n")
-    print("""Please acknowledge this is an educational tool used in safe environment
-taken inspiration from pentesting password cracking tools like THC Hydra.""")
+    print("""Please acknowledge this is an educational tool to used in a safe environment
+taken inspiration from pentesting password cracking tools like JohnTheRipper, HashCat and elements of THC Hydra.""")
     time.sleep(1.5)
     print("\nPassword security toolkit created by an A Level student")
     print("Version 1.0.0")

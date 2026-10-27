@@ -89,10 +89,8 @@ def dictionary(target, wordlist):
     print(f"Time elapsed: {end_time - start_time:4f} seconds")
     print(f"Attempts per second: {attempt / (end_time-start_time):4f}")
 
-
-    print("\nNote the plaintext password target would not be available to be printed in actual scenario")
-    print("\nThis is an educational simulation of a dictionary attack and the program would obviously not be given the plain text password.")
-    print("Possibly just the hash of the target password would be supplied as the program is not attempting to enter a service")
+    print("\nThis is an educational simulation of a dictionary attack")
+    print("This should not be used illegitimately")
 
 
 def generate_candidates(charset, maxlength):
@@ -156,18 +154,12 @@ def brute_force(target, charset, maxlength):
 
     print(f"Time elapsed: {end_time - start_time:4f} seconds")
     print(f"Attempts per second: {attempt / (end_time-start_time):4f}")
-    print("\nNote the plaintext password target would likely not be provided, rather the hash to recover the original password")
-    print("\nThis is an educational simulation of a brute force attack and the program would obviously not be given the plain text password.")
-    print("Possibly just the hash of the target password would be supplied as the program is not attempting to enter a service")
 
-
-
-    pass
+    print("\nThis is an educational simulation of a brute force attack")
+    print("This should not be used illegitimately") 
 
 
 
 if __name__ == "__main__":
-    try:
-        dictionary("hello", "C:/Users/samge/dev/ProjectsGit/Cybersecurity Project/text_files/common_passwords.txt")
-    except KeyboardInterrupt:
+    if KeyboardInterrupt:
         print("[SYSTEM] Program interrupted by user")
