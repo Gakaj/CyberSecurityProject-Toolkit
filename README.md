@@ -63,8 +63,6 @@ python main.py attack -b --hash 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e
 python main.py attack -b -p world -c alphanumerical -m 5
 ```
 
- 
-<br><br><br>
 # Shannon Entropy Calculator Module
 Implements Shannon entropy to analyse the distribution of characters within a password and estimate its information content. 
 Put simply, it quantifies, using an equation, the complexity of a password, demonstrating whether it is able to be a intractable problem(computationally practical) to a brute force scenario. 
