@@ -3,7 +3,7 @@
 A Python-based cybersecurity toolkit that implements dictionary and brute-force password cracking techniques to test against target hashes. The toolkit measures execution time, attempts and cracking speed to demonstrate how password length, character-set complexity and attack methodology affect password security.
 
 The Cybersecurity Toolkit is an educational Python application designed to explore password security, cryptographic hashing and password cracking techniques through practical simulations. It provides a genuine use of offline cracking of (currently exclusively) SHA-256 hashes through methods of dictionary or brute force strategies.
-
+# How to install
 
 ## Key Features
 - Command line interfacce: Implemented command line functionality and commands using Python's **argparse**.
@@ -16,7 +16,7 @@ The Cybersecurity Toolkit is an educational Python application designed to explo
 This is the main function of the project. It allows you to perform offline SHA-256 hash cracking, but also to simulate password cracking in which it will time how long it would take to crack, attempts to reveal hash and also attempts per second. It provides dictionary and brute force functionality. 
 ## Dictionary Methodology
 Decided with the -d tag following the attack command, then provide the arguments for the target hash or the password, then provide the wordlist to test against. <br> The program will call the hash module to convert a candidate password into a SHA-256 hash. Depending on the arguments: if you provided a plaintext password - first hash before comparing, if given a hash, do not hash again. Compare candidate hash to target hash. If do not match, increment attempts and move to next candidate.
-### How to use:
+### Usage:
 ```
 python main.py attack -d -p {PASSWORD} -w {WORDLIST}
 ```
@@ -33,14 +33,25 @@ You can choose a multitude of options for the charset:<br>
  | lowercase a-z | uppercase A-Z | letters a-z, A-Z | digits 0-9 | alphanumerical a-z, A-Z, 0-9 | all a-z, A-Z, 0-9, punctuation
 
  
- ### How to use:
+ ### Usage:
+ ```
+python main.py attack -b --hash {SHA-256 hash} -c {CHARSET} -m {MAXLENGTH INT}
+```
+For example:
+```
+python main.py attack -b --hash 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 -c lowercase -m 5
+```
+```
+python main.py attack -b -p world -c alphanumerical -m 5
+```
+
  
 <br><br><br>
 # Shannon Entropy Calculator Module
 Implements Shannon entropy to analyse the distribution of characters within a password and estimate its information content. 
 Put simply, it quantifies, using an equation, the complexity of a password, demonstrating whether it is able to be a intractable problem(computationally practical) to a brute force scenario. 
 However, it is not automatically an accurate password 'grader'. For example, a password containing repeated characters can have a lower entropy than a random password of the same length. Password predictability and common patterns also matter, like 123 or capitalised first letters also matter significantly - especially in a hybrid attack methodology.
-## How to use:
+## Usage:
 ```
 python main.py entropy -p {PASSWORD}
 ``` 
@@ -48,7 +59,7 @@ It will then follow up with questioning whether you would like to search a wordl
 <br><br><br>
 # Hashing Module
 Implemented with (currently just) SHA-256. Used in the attacking module as well. It is optimised using a generator to only yield one hash at a time rather than loading the whole hashed wordlist 
-## How to use:
+## Usage:
 You can either hash an entire wordlist and output to the terminal:
 ```
 python main.py hash -w {WORDLIST PATH}
@@ -57,6 +68,8 @@ Or hash just one word:
 ```
 python main.py hash -p (WORDLIST PATH}
 ```
+
+
 
 
 
