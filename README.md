@@ -50,7 +50,7 @@ You can choose a multitude of options for the charset:<br>
  | lowercase a-z | uppercase A-Z | letters a-z, A-Z | digits 0-9 | alphanumerical a-z, A-Z, 0-9 | all a-z, A-Z, 0-9, punctuation
 
  
- ### Usage:
+ ###### Usage:
  ```
 python main.py attack -b --hash {SHA-256 hash} -c {CHARSET} -m {MAXLENGTH INT}
 ```
